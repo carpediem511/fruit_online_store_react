@@ -22,7 +22,7 @@ const Count = ({ count, increase, decrease, changeValue, id }) => {
           }}
           className="w-4 mb-1"
         >
-          <img src="/images/icon-up.png" />
+          <img src="/images/icon-up.png" alt=""/>
         </button>
 
         <button
@@ -32,7 +32,7 @@ const Count = ({ count, increase, decrease, changeValue, id }) => {
           }}
           className="w-4"
         >
-          <img src="/images/icon-down.png" />
+          <img src="/images/icon-down.png" alt="" />
         </button>
       </div>
     </div>

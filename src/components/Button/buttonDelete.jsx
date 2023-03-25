@@ -7,7 +7,7 @@ function ButtonDelete({ removeItemFromCart, id }) {
           removeItemFromCart(id);
         }}
       >
-        <img src="/images/icon-close.png" className="w-5" />
+        <img src="/images/icon-close.png" alt="" className="w-5" />
       </button>
     </div>
   );

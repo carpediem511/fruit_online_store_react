@@ -16,7 +16,7 @@ const TemplateForOneProductCard = ({
   return (
     <div className="flex items-center justify-around text-start text-lg">
       <div className="w-1/6 m-auto pl-2">
-        <img src={`./images/${image}`} className="w-24" />
+        <img src={`./images/${image}`} className="w-24" alt=""/>
       </div>
 
       <div className="w-2/6 font-medium">{name}</div>

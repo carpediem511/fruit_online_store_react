@@ -19,7 +19,7 @@ const Product = (props) => {
   return (
     <div className="bg-purple-200 rounded-lg shadow-md w-3/12 text-purple-900 font-semibold text-base mt-20 py-6 px-8">
       <div className="flex flex-col items-start mb-10 grow">
-        <img src={`./images/${product.image}`} className="w-22 rounded-md" />
+        <img src={`./images/${product.image}`} className="w-22 rounded-md" alt=""/>
         <p className="text-xl mt-2">{product.cost} рублей</p>
         <p className="text-2xl font-bold">{product.name}</p>
         <p className="text-md">{product.count} шт.</p>

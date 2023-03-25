@@ -96,7 +96,7 @@ function Cart({ productList }) {
         {/* Добавляем проверку на пустой список */}
         {cart.length === 0 && (
           <div className="m-auto mt-10">
-            <img src="/images/empty_basket.jpg" className="w-1/4 m-auto" />
+            <img src="/images/empty_basket.jpg" className="w-1/4 m-auto" alt=""/>
             <div className="mt-4 text-rose-600 text-2xl font-semibold text-center">
               Ваша корзина пуста!
             </div>
