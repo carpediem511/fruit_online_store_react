@@ -1,6 +1,6 @@
 import Footer from "components/Footer";
 import ProductList from "components/Product/productList";
-import "./styles.css"
+import "./styles.css";
 
 function App() {
   return (

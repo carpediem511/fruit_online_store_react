@@ -1,125 +1,112 @@
-import CartTitle from "./cartTitle"
-import TemplateForOneProductCard from "./templateForOneProductCard"
-import CartHeader from "./cartHeader"
-import CartFooter from "./cartFooter"
-import {useEffect, useState} from "react"
+import CartTitle from "./cartTitle";
+import TemplateForOneProductCard from "./templateForOneProductCard";
+import CartHeader from "./cartHeader";
+import CartFooter from "./cartFooter";
+import { useEffect, useState } from "react";
 
-function Cart({productList}) {
-    //шаблон для всей продуктовой корзины
+function Cart({ productList }) {
+  //шаблон для всей продуктовой корзины
 
-    let [cart, setCart] = useState(productList.filter((p) => p.isAdded))
+  let [cart, setCart] = useState(productList.filter((p) => p.isAdded));
 
-    const [total, setTotal] = useState({
-        cost: cart.reduce(
-            (previous, current) => previous + current.costTotal,
-            0
-        ),
-        count: cart.reduce((previous, current) => previous + current.count, 0),
-    })
+  const [total, setTotal] = useState({
+    cost: cart.reduce((previous, current) => previous + current.costTotal, 0),
+    count: cart.reduce((previous, current) => previous + current.count, 0),
+  });
 
-    useEffect(() => {
-        setTotal({
-            cost: cart.reduce(
-                (previous, current) => previous + current.costTotal,
-                0
-            ),
-            count: cart.reduce(
-                (previous, current) => previous + current.count,
-                0
-            ),
-        })
-    }, [cart])
+  useEffect(() => {
+    setTotal({
+      cost: cart.reduce((previous, current) => previous + current.costTotal, 0),
+      count: cart.reduce((previous, current) => previous + current.count, 0),
+    });
+  }, [cart]);
 
-    const removeItemFromCart = (id) => {
-        setCart((cart) => cart.filter((itemInCart) => id !== itemInCart.id)) //удаляет из корзины
-    }
+  const removeItemFromCart = (id) => {
+    setCart((cart) => cart.filter((itemInCart) => id !== itemInCart.id)); //удаляет из корзины
+  };
 
-    const increase = (id) => {
-        setCart((cart) => {
-            return cart.map((itemInCart) => {
-                if (itemInCart.id === id) {
-                    return {
-                        ...itemInCart,
-                        count: itemInCart.count + 1,
-                        costTotal: (itemInCart.count + 1) * itemInCart.cost,
-                    }
-                }
-                return itemInCart
-            })
-        })
-    }
+  const increase = (id) => {
+    setCart((cart) => {
+      return cart.map((itemInCart) => {
+        if (itemInCart.id === id) {
+          return {
+            ...itemInCart,
+            count: itemInCart.count + 1,
+            costTotal: (itemInCart.count + 1) * itemInCart.cost,
+          };
+        }
+        return itemInCart;
+      });
+    });
+  };
 
-    const decrease = (id) => {
-        setCart((cart) => {
-            return cart.map((itemInCart) => {
-                if (itemInCart.id === id) {
-                    return {
-                        ...itemInCart,
-                        count:
-                            itemInCart.count - 1 > 1 ? itemInCart.count - 1 : 1,
-                        costTotal: (itemInCart.count - 1) * itemInCart.cost,
-                    }
-                }
-                return itemInCart
-            })
-        })
-    }
+  const decrease = (id) => {
+    setCart((cart) => {
+      return cart.map((itemInCart) => {
+        if (itemInCart.id === id) {
+          return {
+            ...itemInCart,
+            count: itemInCart.count - 1 > 1 ? itemInCart.count - 1 : 1,
+            costTotal: (itemInCart.count - 1) * itemInCart.cost,
+          };
+        }
+        return itemInCart;
+      });
+    });
+  };
 
-    const changeValue = (id, value) => {
-        setCart((cart) => {
-            return cart.map((itemInCart) => {
-                if (itemInCart.id === id) {
-                    return {
-                        ...itemInCart,
-                        count: value,
-                        costTotal: value * itemInCart.cost,
-                    }
-                }
+  const changeValue = (id, value) => {
+    setCart((cart) => {
+      return cart.map((itemInCart) => {
+        if (itemInCart.id === id) {
+          return {
+            ...itemInCart,
+            count: value,
+            costTotal: value * itemInCart.cost,
+          };
+        }
 
-                return itemInCart
-            })
-        })
-    }
+        return itemInCart;
+      });
+    });
+  };
 
-    const foodBasket = cart.map((itemInCart) => {
-        return (
-            <TemplateForOneProductCard
-                itemInCart={itemInCart}
-                key={itemInCart.id}
-                increase={increase}
-                decrease={decrease}
-                changeValue={changeValue}
-                removeItemFromCart={removeItemFromCart}
-            />
-        )
-    })
-
+  const foodBasket = cart.map((itemInCart) => {
     return (
-        <div className="w-full">
-            <div>
-                <CartTitle />
-            </div>
+      <TemplateForOneProductCard
+        itemInCart={itemInCart}
+        key={itemInCart.id}
+        increase={increase}
+        decrease={decrease}
+        changeValue={changeValue}
+        removeItemFromCart={removeItemFromCart}
+      />
+    );
+  });
 
-            <div>
-                <CartHeader />
+  return (
+    <div className="w-full">
+      <div>
+        <CartTitle />
+      </div>
 
-                {/* Добавляем проверку на пустой список */}
-                {cart.length === 0 && (
-                    <div className="m-auto mt-10">
-                        <img
-                            src="/images/empty_basket.jpg"
-                            className="w-1/4 m-auto"
-                        />
-                        <div className="mt-4 text-rose-600 text-2xl font-semibold text-center">
-                            Ваша корзина пуста!
-                        </div>
-                    </div>
-                )}
-                <div>{foodBasket}</div>
-                <CartFooter total={total} />
+      <div>
+        <CartHeader />
+
+        {/* Добавляем проверку на пустой список */}
+        {cart.length === 0 && (
+          <div className="m-auto mt-10">
+            <img src="/images/empty_basket.jpg" className="w-1/4 m-auto" />
+            <div className="mt-4 text-rose-600 text-2xl font-semibold text-center">
+              Ваша корзина пуста!
             </div>
-        </div>
-    )
+          </div>
+        )}
+        <div>{foodBasket}</div>
+        <CartFooter total={total} />
+      </div>
+    </div>
+  );
 }
 
-export default Cart
+export default Cart;
