@@ -27,7 +27,7 @@ const Product = (props) => {
 
       <div className="flex justify-between flex-col gap-y-2 text-center">
 	  {/* eslint-disable-next-line jsx-ally/anchor-is-valid */}
-        <a
+        <button
           className={classNames(
             "transition-colors duration-300 cursor-pointer text-purple-900 grow-0 border border-emerald-600 px-2 py-2 rounded-lg hover:text-slate-50 hover:bg-purple-600",
             {
@@ -39,7 +39,7 @@ const Product = (props) => {
           onClick={() => handleClick(product.id)}
         >
           {product.isAdded ? "Добавлено!" : "Добавить в корзину"}
-        </a>
+        </button>
       </div>
     </div>
   );
