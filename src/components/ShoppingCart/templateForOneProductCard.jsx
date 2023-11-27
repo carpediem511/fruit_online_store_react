@@ -2,38 +2,46 @@ import ButtonDelete from "components/Button/buttonDelete";
 import Count from "components/Count";
 
 const TemplateForOneProductCard = ({
-  itemInCart,
-  removeItemFromCart,
-  increase,
-  decrease,
-  changeValue,
+	itemInCart,
+	removeItemFromCart,
+	increase,
+	decrease,
+	changeValue,
 }) => {
-  //шаблон для одного продукта в корзине
-  const { image, name, costTotal, count, id } = itemInCart;
+	//шаблон для одного продукта в корзине
+	const { image, name, costTotal, count, id } = itemInCart;
 
-  let priceFormat = new Intl.NumberFormat();
+	let priceFormat = new Intl.NumberFormat();
 
-  return (
-    <div className="flex items-center justify-around text-start text-lg">
-      <div className="w-1/6 m-auto pl-2">
-        <img src={`./images/${image}`} className="w-24" alt=""/>
-      </div>
+	return (
+		<div className="flex lg:flex-row items-center justify-around text-start text-lg gap-2">
+			<div className="w-1/6"></div>
+			<div className="w-full lg:w-1/2 m-auto sm:w-1/3">
+				<img src={`./images/${image}`} className="w-24 lg:w-full sm:w-16" alt="" />
+			</div>
 
-      <div className="w-2/6 font-medium">{name}</div>
+			<div className="w-full lg:font-medium mt-4 lg:mt-0 lg:pl-4">
+				{name}
+			</div>
 
-      <Count
-        count={count}
-        increase={increase}
-        decrease={decrease}
-        id={id}
-        changeValue={changeValue}
-      />
+			<div className="w-full lg:flex items-center text-center justify-between mt-2 lg:mt-3.5 lg:pl-4 sm:ml-2">
+				<Count
+					count={count}
+					increase={increase}
+					decrease={decrease}
+					id={id}
+					changeValue={changeValue}
+				/>
+			</div>
 
-      <div className="w-1/6">{priceFormat.format(costTotal)} рублей</div>
+			<div className="w-full text-xs text-center lg:mt-0 sm:text-start sm:text-md md:text-xl">
+				{priceFormat.format(costTotal)} рублей
+			</div>
 
-      <ButtonDelete removeItemFromCart={removeItemFromCart} id={id} />
-    </div>
-  );
+			<ButtonDelete removeItemFromCart={removeItemFromCart} id={id} />
+			<div className="w-1/6"></div>
+		</div>
+	);
 };
 
 export default TemplateForOneProductCard;

@@ -101,25 +101,29 @@ function Cart({ productList, setProductList }) {
 	});
 
 	return (
-		<div className="w-full">
+		<div className="w-full p-4 md:p-6 lg:p-8 xl:p-10">
 			<div>
 				<CartTitle />
 			</div>
 
 			<div>
-				<CartHeader />
+				<CartHeader showHeader={cart.length > 0} />
 
-				{/* Добавляем проверку на пустой список */}
 				{cart.length === 0 && (
 					<div className="m-auto mt-10">
-						<img src="/images/empty_basket.jpg" className="w-1/4 m-auto" alt="" />
+						<img
+							src="/images/empty_basket.jpg"
+							className="w-1/4 m-auto"
+							alt=""
+						/>
 						<div className="mt-4 text-rose-600 text-2xl font-semibold text-center">
 							Ваша корзина пуста!
 						</div>
 					</div>
 				)}
-				<div>{foodBasket}</div>
-				<CartFooter total={total} />
+
+				<div className="mt-4">{foodBasket}</div>
+				<CartFooter total={total} showFooter={cart.length > 0} />
 			</div>
 		</div>
 	);

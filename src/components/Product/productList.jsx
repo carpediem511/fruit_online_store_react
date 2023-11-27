@@ -113,30 +113,28 @@ function ProductList() {
 
 	return (
 		<>
-			<Header setModalActive={setModalActive} />
+
 			<Modal
 				active={modalActive}
 				setActive={setModalActive}
 				productList={productList}
 				setProductList={setProductList}
 			/>
-			<p className="text-teal-600 decoration-1 underline underline-offset-8 decoration-fuchsia-700 decoration-wavy font-semibold text-2xl text-center mt-12">
+			<p className="text-teal-600 font-semibold text-2xl text-center mt-12">
 				Экзотические фрукты, имеющиеся в наличии:
 			</p>
 
-			<div className="mx-20 max-w-screen-lg mx-auto flex justify-center gap-8 max-w-5xl flex-wrap">
-				{/* Добавляем проверку на наличие продуктов */}
-				{productList.length > 0 &&
-					productList.map((product) => {
-						return (
-							<Product
-								key={product.id}
-								product={product}
-								productList={productList}
-								setProductList={setProductList}
-							/>
-						);
-					})}
+			<div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[75%]">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-10">
+					{productList.map((product) => (
+						<Product
+							key={product.id}
+							product={product}
+							productList={productList}
+							setProductList={setProductList}
+						/>
+					))}
+				</div>
 			</div>
 		</>
 	);

@@ -1,16 +1,20 @@
-const CartFooter = ({ total }) => {
-  const { count, cost } = total;
+const CartFooter = ({ total, showFooter }) => {
+	if (!showFooter) {
+		return null;
+	}
 
-  let priceFormatNew = new Intl.NumberFormat();
+	const { count, cost } = total;
 
-  return (
-    <div className="flex bg-teal-50 py-4 text-emerald-600 mb-6 text-start">
-      <div className="w-1/6"></div>
-      <div className="w-2/6"></div>
-      <div className="w-1/6">{count} шт.</div>
-      <div className="w-1/6">{priceFormatNew.format(cost)} рублей</div>
-    </div>
-  );
+	let priceFormatNew = new Intl.NumberFormat();
+
+	return (
+		<div className="flex bg-teal-50 py-4 text-emerald-600 mb-6 text-start">
+			<div className="w-1/6"></div>
+			<div className="w-2/6"></div>
+			<div className="w-1/6">{count} шт.</div>
+			<div className="w-1/6 text-sm sm:text-md sm:font-semibold lg:text-lg">{priceFormatNew.format(cost)} рублей</div>
+		</div>
+	);
 };
 
 export default CartFooter;
