@@ -40,52 +40,51 @@ function Cart({ productList, setProductList }) {
 		setProductList(newArr)
 	};
 
-
 	const increase = (id) => {
-		setCart((cart) => {
-			return cart.map((itemInCart) => {
-				if (itemInCart.id === id) {
+		setProductList((prevProductList) => {
+			return prevProductList.map((itemInList) => {
+				if (itemInList.id === id) {
 					return {
-						...itemInCart,
-						count: itemInCart.count + 1,
-						costTotal: (itemInCart.count + 1) * itemInCart.cost,
+						...itemInList,
+						count: itemInList.count + 1,
+						costTotal: (itemInList.count + 1) * itemInList.cost,
 					};
 				}
-				return itemInCart;
+				return itemInList;
 			});
 		});
 	};
 
 	const decrease = (id) => {
-		setCart((cart) => {
-			return cart.map((itemInCart) => {
-				if (itemInCart.id === id) {
+		setProductList((prevProductList) => {
+			return prevProductList.map((itemInList) => {
+				if (itemInList.id === id) {
 					return {
-						...itemInCart,
-						count: itemInCart.count - 1 > 1 ? itemInCart.count - 1 : 1,
-						costTotal: (itemInCart.count - 1) * itemInCart.cost,
+						...itemInList,
+						count: itemInList.count - 1 > 1 ? itemInList.count - 1 : 1,
+						costTotal: (itemInList.count - 1) * itemInList.cost,
 					};
 				}
-				return itemInCart;
+				return itemInList;
 			});
 		});
 	};
 
 	const changeValue = (id, value) => {
-		setCart((cart) => {
-			return cart.map((itemInCart) => {
-				if (itemInCart.id === id) {
+		setProductList((prevProductList) => {
+			return prevProductList.map((itemInList) => {
+				if (itemInList.id === id) {
 					return {
-						...itemInCart,
+						...itemInList,
 						count: value,
-						costTotal: value * itemInCart.cost,
+						costTotal: value * itemInList.cost,
 					};
 				}
-
-				return itemInCart;
+				return itemInList;
 			});
 		});
 	};
+
 
 	const foodBasket = cart.map((itemInCart) => {
 		return (
@@ -94,7 +93,7 @@ function Cart({ productList, setProductList }) {
 				key={itemInCart.id}
 				increase={increase}
 				decrease={decrease}
-				changeValue={changeValue}
+				changeValue={(id, value) => changeValue(id, value)} // Передаем функцию changeValue
 				removeItemFromCart={removeItemFromCart}
 			/>
 		);
