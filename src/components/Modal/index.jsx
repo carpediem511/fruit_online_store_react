@@ -1,6 +1,5 @@
 import ButtonOpenClose from "components/Button/buttonOpenClose";
 import Cart from "components/ShoppingCart/cart";
-import Button from "components/Button/button";
 import ButtonSend from "components/Button/ButtonSend";
 import SuccessModal from "./SuccessModal";
 import { useState } from "react";
@@ -32,7 +31,10 @@ const Modal = ({ active, setActive, productList, setProductList }) => {
 
 						<div className="flex justify-center space-x-4 mt-4">
 							{!isCartEmpty && <ButtonSend onClick={handleButtonClick} />}
-							<ButtonOpenClose handleClick={() => setActive(false)} title="Закрыть" />
+							<ButtonOpenClose
+								handleClick={() => setActive(false)}
+								title="Закрыть"
+							/>
 						</div>
 					</div>
 				</div>
