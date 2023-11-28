@@ -2,9 +2,8 @@ import Modal from "components/Modal";
 import Product from "components/Product/productCardTemplate";
 import { useState } from "react";
 import uuid4 from "uuid4";
-import Header from "components/Header";
 
-function ProductList() {
+const ProductList = ({ modalActive, setModalActive }) => {
 	//массив с продуктами, проверки
 	// Создаем состояние для списка продуктов
 	const [productList, setProductList] = useState([
@@ -108,8 +107,6 @@ function ProductList() {
 			isAdded: false,
 		},
 	]);
-
-	const [modalActive, setModalActive] = useState(false);
 
 	return (
 		<>
